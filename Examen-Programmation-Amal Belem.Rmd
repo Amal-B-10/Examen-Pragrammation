@@ -1,0 +1,29 @@
+---
+title: "Examen-Programmation-Stastitique"
+author: "BELEM Amal"
+date: "2024-12-18"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+
+Data<-list.files(path="C:/Users/belem/Downloads/exam_data/exam_data", pattern=".csv",full.names=TRUE) %>% 
+lapply(read.csv) %>%
+bind_rows ()
+View(Data)
+head(Data)
+
+```
+
+```{r}
+Data$date<-as.Date(Data$date)
+ggplot2::ggplot(Data, ggplot2::aes(x = date, y = nb_de_ventes)) +
+  ggplot2::geom_line(col= "brown", linetype=1) +
+  ggplot2::labs(title = "Ventes par jour",
+       x = "Date", y = "Nombre de ventes") +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+```
+
+
